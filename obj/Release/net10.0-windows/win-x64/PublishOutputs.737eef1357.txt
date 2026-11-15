@@ -1,0 +1,4 @@
+C:\Users\Liam\Documents\Default Project\publish\config.json
+C:\Users\Liam\Documents\Default Project\publish\questions.json
+C:\Users\Liam\Documents\Default Project\publish\README.md
+C:\Users\Liam\Documents\Default Project\publish\FrcResearchTest.exe

@@ -1,0 +1,43 @@
+﻿{
+    "timeLimitMinutes":  30,
+    "kiosk":  true,
+    "showScoreOnSubmit":  false,
+    "homeUrl":  "https://www.google.com/",
+    "searchEngineUrl":  "https://www.google.com/search?q={query}\u0026udm=14",
+    "resultsFolder":  "",
+    "mentorPinSalt":  "a12ebd6c9a1be42d18b53a10ba751a22",
+    "mentorPinHash":  "B5CEEC130F82326F63806F86BFEF551B188885406BA480834A577CDB7D0375EA",
+    "researchPassCorrect":  8,
+    "allowedCitationDomains":  [
+                                   "wpilib.org",
+                                   "ctre-phoenix.com",
+                                   "revrobotics.com",
+                                   "github.com",
+                                   "github.io",
+                                   "firstinspires.org",
+                                   "chiefdelphi.com"
+                               ],
+    "blockedDomains":  [
+                           "chatgpt.com",
+                           "chat.openai.com",
+                           "platform.openai.com",
+                           "claude.ai",
+                           "gemini.google.com",
+                           "bard.google.com",
+                           "aistudio.google.com",
+                           "notebooklm.google.com",
+                           "copilot.microsoft.com",
+                           "perplexity.ai",
+                           "phind.com",
+                           "you.com",
+                           "poe.com",
+                           "grok.com",
+                           "x.ai",
+                           "deepseek.com",
+                           "chat.mistral.ai",
+                           "openrouter.ai",
+                           "huggingface.co",
+                           "character.ai",
+                           "pi.ai"
+                       ]
+}

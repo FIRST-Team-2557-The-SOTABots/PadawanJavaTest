@@ -1,0 +1,205 @@
+{
+  "title": "FRC Research & Debugging Assessment",
+  "questions": [
+    {
+      "id": "R1",
+      "type": "research",
+      "points": 1,
+      "prompt": "In WPILib's command-based framework, which method on CommandScheduler schedules a command to run? Give the method name.",
+      "requireCitation": true,
+      "autoScore": true,
+      "accept": { "all": ["schedule"], "any": [] }
+    },
+    {
+      "id": "R2",
+      "type": "research",
+      "points": 1,
+      "prompt": "Which command composition class runs multiple commands at the same time and ends as soon as one of them finishes? Give the class name.",
+      "requireCitation": true,
+      "autoScore": true,
+      "accept": { "all": [], "any": ["parallelracegroup", "race"] }
+    },
+    {
+      "id": "R3",
+      "type": "research",
+      "points": 1,
+      "prompt": "Which PIDController method returns true when the measured value is within the configured tolerance of the setpoint?",
+      "requireCitation": true,
+      "autoScore": true,
+      "accept": { "all": [], "any": ["atsetpoint"] }
+    },
+    {
+      "id": "R4",
+      "type": "research",
+      "points": 1,
+      "prompt": "Which WPILib Timer method returns true once a specified number of seconds has elapsed since the timer was started?",
+      "requireCitation": true,
+      "autoScore": true,
+      "accept": { "all": [], "any": ["haselapsed"] }
+    },
+    {
+      "id": "R5",
+      "type": "research",
+      "points": 1,
+      "prompt": "Which method on a SPARK MAX sets whether the motor brakes or coasts when it is not being driven? Give the method name.",
+      "requireCitation": true,
+      "autoScore": true,
+      "accept": { "all": [], "any": ["setidlemode", "idlemode"] }
+    },
+    {
+      "id": "R6",
+      "type": "research",
+      "points": 1,
+      "prompt": "Which method makes one SPARK MAX follow another motor controller? Give the method name.",
+      "requireCitation": true,
+      "autoScore": true,
+      "accept": { "all": [], "any": ["follow"] }
+    },
+    {
+      "id": "R7",
+      "type": "research",
+      "points": 1,
+      "prompt": "Phoenix 6 status signals are not updated automatically. Which method do you call on a StatusSignal to fetch its latest value before reading it?",
+      "requireCitation": true,
+      "autoScore": true,
+      "accept": { "all": [], "any": ["refresh", "waitforupdate"] }
+    },
+    {
+      "id": "R8",
+      "type": "research",
+      "points": 1,
+      "prompt": "Which Phoenix 6 configuration class holds the settings for a TalonFX, and which method applies that configuration to the device? Name both.",
+      "requireCitation": true,
+      "autoScore": true,
+      "accept": { "all": ["talonfxconfiguration", "apply"], "any": [] }
+    },
+    {
+      "id": "R9",
+      "type": "research",
+      "points": 1,
+      "prompt": "WPILib projects declare third-party libraries with vendor dependency files. What file extension do those files use, and which folder in the project holds them?",
+      "requireCitation": true,
+      "autoScore": true,
+      "accept": { "all": ["json", "vendordep"], "any": [] }
+    },
+    {
+      "id": "R10",
+      "type": "research",
+      "points": 1,
+      "prompt": "Which SmartDashboard method publishes a decimal number to NetworkTables under a given key? Give the method name.",
+      "requireCitation": true,
+      "autoScore": true,
+      "accept": { "all": ["putnumber"], "any": [] }
+    },
+    {
+      "id": "P1",
+      "type": "code",
+      "points": 1,
+      "language": "java",
+      "prompt": "This method should return true when value is 5, but it does not compile. Explain the error and write the corrected line.",
+      "snippet": "public boolean isFive(int value) {\n    if (value = 5) {\n        return true;\n    }\n    return false;\n}",
+      "rubric": "= assigns instead of comparing. if (value = 5) is invalid because an int cannot be used as a boolean. Fix: if (value == 5). Bonus: return value == 5;",
+      "requireCitation": false,
+      "autoScore": false
+    },
+    {
+      "id": "P2",
+      "type": "code",
+      "points": 1,
+      "language": "java",
+      "prompt": "For which input does this method return the wrong string, and why? How do you fix it?",
+      "snippet": "public String modeName(int mode) {\n    String name = \"unknown\";\n    switch (mode) {\n        case 0:\n            name = \"disabled\";\n            break;\n        case 1:\n            name = \"teleop\";\n        case 2:\n            name = \"auto\";\n            break;\n    }\n    return name;\n}",
+      "rubric": "Mode 1 falls through into case 2 because case 1 has no break, so modeName(1) returns \"auto\". Add break; after name = \"teleop\";",
+      "requireCitation": false,
+      "autoScore": false
+    },
+    {
+      "id": "P3",
+      "type": "code",
+      "points": 1,
+      "language": "java",
+      "prompt": "Calling average(3, 4) returns 3.0 instead of 3.5. Explain why, and give two different fixes.",
+      "snippet": "public double average(int a, int b) {\n    return (a + b) / 2;\n}",
+      "rubric": "Integer division truncates before the result becomes a double. Accept two of: (a + b) / 2.0, (double)(a + b) / 2, or casting one operand before dividing.",
+      "requireCitation": false,
+      "autoScore": false
+    },
+    {
+      "id": "P4",
+      "type": "code",
+      "points": 1,
+      "language": "java",
+      "prompt": "This compiles, but the robot throws a NullPointerException the first time setSpeed is called. Why, and how do you fix it?",
+      "snippet": "public class ArmSubsystem {\n    private CANSparkMax motor;\n\n    public ArmSubsystem() {\n        // TODO: create the motor\n    }\n\n    public void setSpeed(double speed) {\n        motor.set(speed);\n    }\n}",
+      "rubric": "motor is never assigned, so it is null. Construct it in the constructor, e.g. motor = new CANSparkMax(5, MotorType.kBrushless); with a real CAN ID. Naming null plus constructing the motor is enough.",
+      "requireCitation": false,
+      "autoScore": false
+    },
+    {
+      "id": "P5",
+      "type": "code",
+      "points": 1,
+      "language": "java",
+      "prompt": "What happens when this loop runs, and what is the one-character fix?",
+      "snippet": "double[] samples = new double[10];\n\nfor (int i = 0; i <= samples.length; i++) {\n    samples[i] = 0.0;\n}",
+      "rubric": "i reaches 10, but valid indices are 0-9, so samples[10] throws ArrayIndexOutOfBoundsException. Change <= to <.",
+      "requireCitation": false,
+      "autoScore": false
+    },
+    {
+      "id": "P6",
+      "type": "code",
+      "points": 1,
+      "language": "java",
+      "prompt": "This method does not compile. What is missing, and what should the method body be?",
+      "snippet": "public double getSpeed() {\n    double speed = 0.5;\n}",
+      "rubric": "Missing return statement. Add return speed; (or return 0.5;).",
+      "requireCitation": false,
+      "autoScore": false
+    },
+    {
+      "id": "P7",
+      "type": "code",
+      "points": 1,
+      "language": "java",
+      "prompt": "This sometimes fails even when getMode() returns \"teleop\". Explain why and write the corrected condition.",
+      "snippet": "String mode = getMode();\n\nif (mode == \"teleop\") {\n    startTeleop();\n}",
+      "rubric": "== compares references, not text. Use \"teleop\".equals(mode) or mode.equals(\"teleop\"). Objects.equals is also acceptable. .equals must be mentioned.",
+      "requireCitation": false,
+      "autoScore": false
+    },
+    {
+      "id": "P8",
+      "type": "code",
+      "points": 1,
+      "language": "java",
+      "prompt": "After calling setSpeed(0.8), the Shooter's speed field is still 0.0. Why? Fix the method.",
+      "snippet": "public class Shooter {\n    private double speed = 0.0;\n\n    public void setSpeed(double speed) {\n        speed = speed;\n    }\n}",
+      "rubric": "The parameter shadows the field, so speed = speed assigns the parameter to itself. Use this.speed = speed;",
+      "requireCitation": false,
+      "autoScore": false
+    },
+    {
+      "id": "P9",
+      "type": "code",
+      "points": 1,
+      "language": "java",
+      "prompt": "What is wrong with this loop, and how do you fix it?",
+      "snippet": "int count = 0;\n\nwhile (count < 5) {\n    System.out.println(\"running\");\n}",
+      "rubric": "count is never incremented, so the loop never exits. Add count++; inside the loop body.",
+      "requireCitation": false,
+      "autoScore": false
+    },
+    {
+      "id": "P10",
+      "type": "code",
+      "points": 1,
+      "language": "java",
+      "prompt": "This does not compile. Explain the scoping error and show a corrected version.",
+      "snippet": "if (isEnabled) {\n    double speed = 0.5;\n}\n\nmotor.set(speed);",
+      "rubric": "speed is declared inside the if block and is out of scope at motor.set. Declare speed before the if and assign inside it, or move motor.set(speed) inside the block.",
+      "requireCitation": false,
+      "autoScore": false
+    }
+  ]
+}
